@@ -12,10 +12,36 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    func GrabStoryboard() -> UIStoryboard {
+        let screenHeight = UIScreen.mainScreen().bounds.size.height
+        var storyboard: UIStoryboard!
+        switch screenHeight {
+        case 667:
+            storyboard = UIStoryboard(name: "Main iPhone6", bundle: nil)
+            break
+        default:
+            storyboard = UIStoryboard(name: "Main", bundle: nil)
+        }
+        return storyboard
+    }
+    
+    func SetInitialScreen(storyBoard: UIStoryboard) {
+        let initViewController = storyBoard.instantiateViewControllerWithIdentifier("Main")
+        
+        self.window = UIWindow.init(frame: UIScreen.mainScreen().bounds)
+        self.window?.rootViewController = initViewController
+        self.window?.makeKeyAndVisible()
+    }
+    
+    func SetStoryboard() {
+        let storyBoard = self.GrabStoryboard()
+        self.SetInitialScreen(storyBoard)
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        self.SetStoryboard()
         return true
     }
 

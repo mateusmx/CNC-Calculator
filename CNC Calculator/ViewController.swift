@@ -24,14 +24,47 @@ class ViewController: UIViewController {
     @IBOutlet weak var lbFormula3: UILabel!
     @IBOutlet weak var lbFormula4: UILabel!
     
+    var indexPosicion = 0
+    var indexCuadrante = 0
     
     @IBAction func CambioPosicion(sender: UISegmentedControl) {
-        
+        self.indexPosicion = sender.selectedSegmentIndex
+        self.CambiarImagen()
     }
     
     @IBAction func CambioCuadrante(sender: UISegmentedControl) {
-        
+        self.indexCuadrante = sender.selectedSegmentIndex
+        self.CambiarImagen()
     }
+    
+    func CambiarImagen() {
+        if self.indexPosicion == 0 {
+            switch self.indexCuadrante {
+            case 0:
+                self.imImagen.image = UIImage(named: "Horizontal Primer")
+            case 1:
+                self.imImagen.image = UIImage(named: "Horizontal Segundo")
+            case 2:
+                self.imImagen.image = UIImage(named: "Horizontal Tercer")
+            default:
+                self.imImagen.image = UIImage(named: "Horizontal Cuarto")
+            }
+        }
+        else {
+            switch self.indexCuadrante {
+            case 0:
+                self.imImagen.image = UIImage(named: "Vertical Primer")
+            case 1:
+                self.imImagen.image = UIImage(named: "Vertical Segundo")
+            case 2:
+                self.imImagen.image = UIImage(named: "Vertical Tercer")
+            default:
+                self.imImagen.image = UIImage(named: "Vertical Cuarto")
+            }
+        }
+    }
+    
+    
    
     @IBAction func Calcular() {
         if tfPuntox.text != nil && tfPuntoy.text != nil && tfRadio.text != nil && tfAngulo.text != nil {
