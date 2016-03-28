@@ -30,11 +30,13 @@ class ViewController: UIViewController {
     @IBAction func CambioPosicion(sender: UISegmentedControl) {
         self.indexPosicion = sender.selectedSegmentIndex
         self.CambiarImagen()
+        self.Calcular()
     }
     
     @IBAction func CambioCuadrante(sender: UISegmentedControl) {
         self.indexCuadrante = sender.selectedSegmentIndex
         self.CambiarImagen()
+        self.Calcular()
     }
     
     func CambiarImagen() {
@@ -82,6 +84,78 @@ class ViewController: UIViewController {
             lbFormula3.text = String(format: "F3 = %0.2f", formula3)
             lbFormula4.text = String(format: "F4 = %0.2f", formula4)
             
+            var dpunto1X: Double!
+            var dpunto1Y: Double!
+            var dpunto2X: Double!
+            var dpunto2Y: Double!
+            
+            // Posición Horizontal
+            if self.indexPosicion == 0 {
+                switch self.indexCuadrante {
+                    // Primer Cuadrante
+                case 0:
+                    dpunto2X = puntoX - formula4
+                    dpunto2Y = puntoY
+                    dpunto1X = puntoX + formula3
+                    dpunto1Y = puntoY - formula2
+                    
+                    // Segundo Cuadrante
+                case 1:
+                    dpunto2X = puntoX + formula4
+                    dpunto2Y = puntoY
+                    dpunto1X = puntoX - formula3
+                    dpunto1Y = puntoY - formula2
+                    
+                    // Tercer Cuadrante
+                case 2:
+                    dpunto1X = puntoX - formula3
+                    dpunto1Y = puntoY + formula2
+                    dpunto2X = puntoX + formula4
+                    dpunto2Y = puntoY
+                    
+                    // Cuarto Cuadrante
+                default:
+                    dpunto1X = puntoX + formula3
+                    dpunto1Y = puntoY + formula2
+                    dpunto2X = puntoX - formula4
+                    dpunto2Y = puntoY
+                }
+            }
+                // Posición Vertical
+            else {
+                switch self.indexCuadrante {
+                    // Primer Cuadrante
+                case 0:
+                    dpunto1X = puntoX - formula2
+                    dpunto1Y = puntoY + formula3
+                    dpunto2X = puntoX
+                    dpunto2Y = puntoY - formula4
+                    
+                    // Segundo Cuadrante
+                case 1:
+                    dpunto1X = puntoX + formula2
+                    dpunto1Y = puntoY + formula3
+                    dpunto2X = puntoX
+                    dpunto2Y = puntoY - formula4
+                    
+                    // Tercer Cuadrante
+                case 2:
+                    dpunto2X = puntoX
+                    dpunto2Y = puntoY + formula4
+                    dpunto1X = puntoX + formula2
+                    dpunto1Y = puntoY - formula3
+                    
+                    // Cuarto Cuadrante
+                default:
+                    dpunto2X = puntoX
+                    dpunto2Y = puntoY + formula4
+                    dpunto1X = puntoX - formula2
+                    dpunto1Y = puntoY - formula3
+                }
+            }
+            
+            lbPunto1.text = String(format: "P1 = (%0.2f, %0.2f)", dpunto1X, dpunto1Y)
+            lbPunto2.text = String(format: "P2 = (%0.2f, %0.2f)", dpunto2X, dpunto2Y)
         }
     }
     
