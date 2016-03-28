@@ -27,6 +27,11 @@ class ViewController: UIViewController {
     var indexPosicion = 0
     var indexCuadrante = 0
     
+    @IBAction func QuitKeyboard(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
+    
+    
     @IBAction func CambioPosicion(sender: UISegmentedControl) {
         self.indexPosicion = sender.selectedSegmentIndex
         self.CambiarImagen()
