@@ -69,7 +69,7 @@ class ViewController: UIViewController {
     
    
     @IBAction func Calcular() {
-        if tfPuntox.text != nil && tfPuntoy.text != nil && tfRadio.text != nil && tfAngulo.text != nil {
+        if tfPuntox.text != "" && tfPuntoy.text != "" && tfRadio.text != "" && tfAngulo.text != "" {
             let puntoX = Double(tfPuntox.text!)!
             let puntoY = Double(tfPuntoy.text!)!
             let radio = Double(tfRadio.text!)!
